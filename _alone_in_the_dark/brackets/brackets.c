@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   brackets.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlvereta <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/25 10:15:03 by vlvereta          #+#    #+#             */
+/*   Updated: 2017/10/25 10:18:32 by vlvereta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "brackets.h"
 
-int		check_brackets(t_stack *s, char *av)
+int	check_brackets(t_stack *s, char *av)
 {
 	while (*av)
 	{
@@ -17,19 +29,17 @@ int		check_brackets(t_stack *s, char *av)
 				return (0);
 		}
 		else if (*av == '}')
-		{
 			if (--(s->index) < 0 || s->array[s->index] != '{')
 				return (0);
-		}
 		av++;
 	}
-	return (s->index == 0 ? (1) : (0));
+	return (s->index == 0 ? 1 : 0);
 }
 
-int		main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	t_stack	s;
 
 	if (argc > 1)
