@@ -8,5 +8,6 @@ int main(void)
 				12, 16, 21, 42};
 
 	print_memory(tab, sizeof(tab));
+	print_memory("hello", 5);
 	return (0);
 }
