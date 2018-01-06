@@ -5,16 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlvereta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/04 09:54:40 by vlvereta          #+#    #+#             */
-/*   Updated: 2017/12/04 09:54:42 by vlvereta         ###   ########.fr       */
+/*   Created: 2018/01/06 09:54:40 by vlvereta          #+#    #+#             */
+/*   Updated: 2018/01/06 09:54:42 by vlvereta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rpn.h"
+#include "rpn_calc.h"
 
 int		main(int argc, char *argv[])
 {
-	int		i;
+	int	i;
 	t_stack	s;
 
 	if (argc == 2)
@@ -30,7 +30,7 @@ int		main(int argc, char *argv[])
 	return (0);
 }
 
-void	reading(char *av, t_stack *s)
+void		reading(char *av, t_stack *s)
 {
 	while (*av)
 	{
@@ -58,9 +58,9 @@ void	reading(char *av, t_stack *s)
 		printf("Error\n");
 }
 
-void	add_num(char **av, t_stack *s)
+void		add_num(char **av, t_stack *s)
 {
-	int		i;
+	int	i;
 	char	*temp;
 
 	if ((temp = (char *)malloc(sizeof(char) * 12)))
@@ -68,7 +68,7 @@ void	add_num(char **av, t_stack *s)
 		i = 0;
 		if (*(*av) == '-')
 			temp[i++] = *(*av)++;
-		while (*(*av) >= '0' && *(*av) <= '9')
+		while(*(*av) >= '0' && *(*av) <= '9')
 			temp[i++] = *(*av)++;
 		temp[i] = '\0';
 		s->stack[++(s->index)] = atoi(temp);
