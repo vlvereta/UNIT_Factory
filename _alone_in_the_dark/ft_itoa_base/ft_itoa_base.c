@@ -5,20 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlvereta <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/05 14:00:52 by vlvereta          #+#    #+#             */
-/*   Updated: 2017/11/05 14:03:48 by vlvereta         ###   ########.fr       */
+/*   Created: 2018/01/06 14:00:52 by vlvereta          #+#    #+#             */
+/*   Updated: 2018/01/06 14:03:48 by vlvereta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 
-char	*write_array(unsigned int number, int base, unsigned int size, int sign)
+char	*write_array(unsigned int number, int base, int size, int sign)
 {
-	int		i;
+	int	i;
+	char	temp;
 	char	*array;
 
-	array = (char *)malloc(sizeof(char) * (size + 1));
+	if (!(array = (char *)malloc(sizeof(char) * (size + 1))))
+		return (NULL);
 	array[size] = '\0';
 	if (sign)
 		array[0] = '-';
@@ -26,46 +27,26 @@ char	*write_array(unsigned int number, int base, unsigned int size, int sign)
 		array[--size] = '0';
 	while (number)
 	{
-		if ((number % base) > 9)
-			array[--size] = 55 + number % base;
-		else
-			array[--size] = '0' + number % base;
+		array[--size] = ((temp = number % base) > 9 ? 55 + temp :
+				'0' + temp);
 		number /= base;
 	}
 	return (array);
 }
 
-
 char	*ft_itoa_base(int value, int base)
 {
-	int				sign;
+	int		sign;
+	int		size;
 	unsigned int	number;
-	unsigned int	size;
 
-	size = 0;
-	sign = 0;
-	if (!value)
-		size++;
-	if (value < 0 && base == 10)
-	{
-		number = value * -1;
-		sign = 1;
-		size++;
-	}
-	else
-		number = value;
+	sign = (value < 0 ? 1 : 0);
+	size = (value < 0 || !value ? 1 : 0);
+	number = (value < 0 && base == 10 ? -value : value);
 	while (value)
 	{
 		value /= base;
 		size++;
 	}
 	return (write_array(number, base, size, sign));
-}
-
-int		main(void)
-{
-	printf("%s\n", ft_itoa_base(-2147483648, 16));
-	printf("%s\n", ft_itoa_base(2147483647, 8));
-	printf("%s\n", ft_itoa_base(0, 2));
-	return (0);
 }
