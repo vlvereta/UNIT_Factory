@@ -4,3 +4,9 @@
 [submodule "get_next_line"]
 	path = get_next_line
 	url = https://github.com/vlvereta/get_next_line.git
+[submodule "filler"]
+	path = filler
+	url = https://github.com/vlvereta/filler.git
+[submodule "libft"]
+	path = libft
+	url = https://github.com/vlvereta/libft.git
